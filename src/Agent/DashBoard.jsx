@@ -14,7 +14,7 @@ import { Dashboards } from "../Auth/ComDashBoard";
 
 const Dashboard = () => {
    const{loginuser} = useContext(LoginUserInfo)
-   const{dash,setdash} = useContext(Dashboards)
+   const{dash,setdash , setagents} = useContext(Dashboards)
 
 
 
@@ -30,8 +30,11 @@ const Dashboard = () => {
     .then((g)=>{
       console.log(g)
       setdash(g)
-
+       setagents(g.agents)
+      
     })
+
+   
 
   },[])
 
