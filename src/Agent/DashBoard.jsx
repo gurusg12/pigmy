@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, } from "react";
 import { FaUserAlt } from "react-icons/fa";
 import { IoMdSend } from "react-icons/io";
 import {
@@ -8,10 +8,35 @@ import {
   FcTodoList,
 } from "react-icons/fc";
 import { NavLink, Link } from "react-router-dom";
-import { UserContext } from "../Auth/Userprovider";
+import { LoginUserInfo } from "../Api/Loginfo";
+import Api from "../Api/LoginApi";
+import { Dashboards } from "../Auth/ComDashBoard";
 
 const Dashboard = () => {
-  const { user } = useContext(UserContext);
+   const{loginuser} = useContext(LoginUserInfo)
+   const{dash,setdash} = useContext(Dashboards)
+
+
+
+ 
+  useEffect(()=>{
+  const data = new URLSearchParams()
+  data.append("apikey" , "getDashboard")
+  data.append("token" ,loginuser.loginfo.token )
+    fetch(Api.Dash_Board, {
+      method : "POST",headers:{"Content-Type" : "application/x-www-form-urlencoded"} ,body : data.toString()
+    })
+    .then((f)=> f.json())
+    .then((g)=>{
+      console.log(g)
+      setdash(g)
+
+    })
+
+  },[])
+
+ 
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-100 to-slate-200 p-6">
@@ -20,7 +45,7 @@ const Dashboard = () => {
       <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-8 gap-4">
         <div>
           <h1 className="text-3xl font-bold text-slate-800">
-            Welcome Back 👋
+            Welcome Back 👋 <p></p>
           </h1>
           <p className="text-slate-500 text-sm">
             Here is your dashboard overview
@@ -30,7 +55,7 @@ const Dashboard = () => {
         <div className="flex items-center gap-3 bg-white px-4 py-2 rounded-xl shadow-md">
           <FaUserAlt className="text-slate-600" />
           <span className="font-semibold text-slate-700">
-            {user?.username}
+            {loginuser.loginfo.name}
           </span>
         </div>
       </div>
@@ -45,7 +70,7 @@ const Dashboard = () => {
             <span className="text-sm text-slate-400">Accounts</span>
           </div>
 
-          <h2 className="text-2xl font-bold text-slate-800">5</h2>
+          <h2 className="text-2xl font-bold text-slate-800">{dash.noofagents}</h2>
           <p className="text-slate-500 text-sm mb-3">
             Active no of accounts
           </p>

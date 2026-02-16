@@ -1,3 +1,4 @@
-const Login_api = "http://www.pigmylite.in/apinew/login.php"
+ const Login_api = "http://www.pigmylite.in/apinew/login.php"
+ const Dash_Board = "http://www.pigmylite.in/apinew/myapi.php"
 
-export default Login_api
+ export default { Login_api , Dash_Board}
