@@ -38,12 +38,13 @@ const LoginFormCompany = () => {
           localStorage.setItem("userrole", JSON.stringify({ role: "company" }));
           localStorage.setItem("logininfo", JSON.stringify(f));
           setloginuser(f);
+          console.log( "login info " , f);
+
           navigate("/company");
           setname("");
           setpass("");
         } else {
           setError(`on this name ${name} company not present`);
-          console.log(f);
           setloginuser();
           navigate("/");
           setname("");

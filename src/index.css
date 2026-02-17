@@ -1,5 +1,2 @@
 @import "tailwindcss";
 
-a.active {
-    border-bottom: 2px solid skyblue;
-}
