@@ -38,7 +38,7 @@ const Nav = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-3">
             <NavLink
-              to="dashboard"
+              to="/company"
               className={({ isActive }) =>
                 `${linkStyle} ${isActive ? activeStyle : inactiveStyle}`
               }
@@ -52,7 +52,7 @@ const Nav = () => {
                 `${linkStyle} ${isActive ? activeStyle : inactiveStyle}`
               }
             >
-              Account List
+              Agents List
             </NavLink>
             <NavLink
               to="profileupdate"

@@ -9,17 +9,15 @@ import Acclist from './Agent/Acclist'
 import Profileupdate from './Agent/Profileupdate'
 import Changepass from './Agent/Changepass'
 
-import Recept from './Agent/Recept'
 import CompanyDash from './Company/CompanyDash'
 import Company from './Pages/Company'
 import Authuser from './Auth/Authuser'
 import LoginFormAgent from './Pages/LoginFormAgent'
 import LoginFormCompany from './Pages/LoginFormCompany'
-import Summaryagent from './Agent/Summeryagents'
-import DeviceSummary from './Agent/DeviceSummary'
-import ComManageAgent from './Company/ComManageAgent'
-import AgentConfig from './Company/AgentConfig'
-import Accountlist from './Company/Accountlist'
+import AgentsList from './Company/AgentsList'
+import AgentConfig from './Company/AgentsList/AgentConfig'
+import Accountlist from './Company/AgentsList/Accountlist'
+import Acc from './Company/Acc'
 
 const App = () => {
   return (
@@ -37,24 +35,16 @@ const App = () => {
         <Route path = 'profileupdate'  element = {<Profileupdate/>}/>
         <Route path='changepass' element={<Changepass/>} />
     
-        <Route path='receipts' element={<Recept/>} />
-        <Route path='summaryagent' element={<Summaryagent/>} />
-        <Route path='deviceSummary' element={<DeviceSummary/>} />
 
 
       </Route>
       <Route path='/company' element={<Authuser role="company"><Company/></Authuser>} >
         <Route index  element = {<CompanyDash/>}  />
-        <Route path = 'acclist'  element = {<ComManageAgent/>}/>
-        <Route path = 'acclist/:id'  element = {<AgentConfig/>}/>
+        <Route path = 'acclist'  element = {<AgentsList/>}/>
         <Route path = 'agentsacclist/:id'  element = {<Accountlist/>}/>
+        <Route path = 'acclist/:id'  element = {<AgentConfig/>}/>
+        <Route path = 'acc'  element = {<Acc/>}/>
 
-       
-
-
-        <Route path = 'profileupdate'  element = {<Profileupdate/>}/>
-        <Route path='changepass' element={<Changepass/>} />
-        <Route path='receipts' element={<Recept/>} />
       </Route>
     </Routes>
   )

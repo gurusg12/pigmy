@@ -1,20 +1,22 @@
 import React, { useContext, useEffect, } from "react";
 import { FaUserAlt } from "react-icons/fa";
 import { IoMdSend } from "react-icons/io";
+import { FcBusinessman } from "react-icons/fc";
 import {
   FcConferenceCall,
   FcInspection,
   FcComboChart,
-  FcTodoList,
+  
 } from "react-icons/fc";
 import { NavLink, Link } from "react-router-dom";
 import Api from "../Api/LoginApi";
 import { Dashboards } from "../Auth/ComDashBoard";
+import AgentsListforDash from "../Components/Company/AgentsListforDash";
 
 const CompanyDash = () => {
    const user= localStorage.getItem("logininfo")
    const logininfo = JSON.parse(user)
-   const{dash,setdash , setagents} = useContext(Dashboards)
+   const{dash, setdash , setagents} = useContext(Dashboards)
 
 
 
@@ -28,7 +30,7 @@ const CompanyDash = () => {
     })
     .then((f)=> f.json())
     .then((g)=>{
-      console.log(g)
+      console.log("login" , g)
       setdash(g)
        setagents(g.agents)
       
@@ -53,10 +55,14 @@ const CompanyDash = () => {
           <p className="text-slate-500 text-sm">
             Here is your dashboard overview
           </p>
+
         </div>
+                  <h1 className="border w-fit px-3 py-0.3 rounded  text-l font-mono flex justify-between items-center ">           <FaUserAlt className="text-slate-600 mr-3" />
+ {logininfo.loginfo.name_name}</h1>
+
 
         <div className="flex items-center gap-3 bg-white px-4 py-2 rounded-xl shadow-md">
-          <FaUserAlt className="text-slate-600" />
+          
           <span className="font-semibold text-slate-700">
             {logininfo.loginfo.name}
           </span>
@@ -70,12 +76,13 @@ const CompanyDash = () => {
         <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
           <div className="flex justify-between items-center mb-4">
             <FcConferenceCall className="text-5xl" />
-            <span className="text-sm text-slate-400">Accounts</span>
+            <span className="text-xl font-bold text-slate-500">Agents</span>
           </div>
 
           <h2 className="text-2xl font-bold text-slate-800">{dash.noofagents}</h2>
           <p className="text-slate-500 text-sm mb-3">
-           {dash.noofacs}
+            Number of Agents
+           
           </p>
 
           <NavLink
@@ -84,13 +91,14 @@ const CompanyDash = () => {
           >
             More info <IoMdSend />
           </NavLink>
-        </div>
+        </div>   
+         
 
         {/* Receipts */}
         <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
           <div className="flex justify-between items-center mb-4">
             <FcInspection className="text-5xl" />
-            <span className="text-sm text-slate-400">Receipts</span>
+            <span className="text-xl font-bold text-slate-500">Receipts</span>
           </div>
 
           <h2 className="text-2xl font-bold text-slate-800">{dash.totrcpts}</h2>
@@ -110,7 +118,7 @@ const CompanyDash = () => {
         <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
           <div className="flex justify-between items-center mb-4">
             <FcComboChart className="text-5xl" />
-            <span className="text-sm text-slate-400">Collection</span>
+            <span className="text-xl font-bold text-slate-500">Collection</span>
           </div>
 
           <h2 className="text-2xl font-bold text-green-600">₹ {dash.totrcptamt}</h2>
@@ -126,27 +134,34 @@ const CompanyDash = () => {
           </NavLink>
         </div>
 
-        {/* Device Summary */}
         <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
           <div className="flex justify-between items-center mb-4">
-            <FcTodoList className="text-5xl" />
-            <span className="text-sm text-slate-400">Devices</span>
+            <FcBusinessman className="text-5xl" />
+            <span className="text-xl font-bold text-slate-500">Accounts</span>
           </div>
 
-          <h2 className="text-2xl font-bold text-purple-600">5</h2>
+          <h2 className="text-2xl font-bold text--600"> {dash.noofacs}</h2>
           <p className="text-slate-500 text-sm mb-3">
-            Devicewise summary
+            Total No of Accounts
           </p>
 
           <NavLink
-            to="/agent/deviceSummary"
-            className="text-purple-600 font-medium flex items-center gap-1 hover:text-purple-800"
+            to="/agent/summaryagent"
+            className="text-sky-600 font-medium flex items-center gap-1 hover:text-green-800"
           >
             More info <IoMdSend />
           </NavLink>
         </div>
 
+        {/* Device Summary */}
+      
+        <br />
+
       </div>
+       <div className="flex w-full  justify-center">
+          <AgentsListforDash/>
+        </div>
+     
     </div>
   );
 };

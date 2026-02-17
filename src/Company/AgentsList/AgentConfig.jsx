@@ -2,15 +2,16 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 const AgentConfig = () => {
-    const {userid} = useParams()
+    const {id} = useParams()
+    console.log(id)
   return (
     <div className="min-h-screen bg-slate-100 p-6">
-        <h1>{userid}</h1>
+        <h1>{id}</h1>
       <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-md border border-slate-200">
         
         {/* Header */}
         <div className="bg-blue-600 text-white px-6 py-3 rounded-t-xl">
-          <h2 className="text-lg font-semibold">Add Agent</h2>
+          <h2 className="text-lg font-semibold"> agnets </h2>
         </div>
 
         {/* Form Body */}

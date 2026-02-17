@@ -3,9 +3,21 @@ import { Dashboards } from "../Auth/ComDashBoard";
 import { FaEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-const ComManageAgent = () => {
+const AgentsList = () => {
   const { agents } = useContext(Dashboards);
+  console.log(agents)
   const navigate = useNavigate()
+  const {settoken} = useContext(Dashboards)
+
+   function submit(agent){
+   const {Userunqid , token} = agent
+
+   settoken({Userunqid , token})
+
+   navigate(`/company/agentsacclist/${Userunqid}`)
+
+
+  }
 
   return (
     <div className="p-6 bg-slate-100 min-h-screen">
@@ -40,7 +52,6 @@ const ComManageAgent = () => {
               <p>
                 <strong>Receipts:</strong> {agent.Noofrcpts}
               </p>
-              <p>Userunqid {agent.Userunqid}</p>
             </div>
 
             {/* Buttons */}
@@ -48,9 +59,10 @@ const ComManageAgent = () => {
               <button onClick={()=>{navigate(`/company/acclist/${agent.Userunqid}`)}} className="bg-blue-600 text-white text-sm px-3 py-1.5 rounded-md hover:bg-blue-700 transition">
                 Configuration
               </button>
-              <button className="bg-blue-600 text-white text-sm px-3 py-1.5 rounded-md hover:bg-blue-700 transition">
+              <button onClick={()=>{submit(agent)}} className="bg-blue-600 text-white text-sm px-3 py-1.5 rounded-md hover:bg-blue-700 transition">
                 Accounts List
               </button>
+             
               <button className="bg-blue-600 text-white text-sm px-3 py-1.5 rounded-md hover:bg-blue-700 transition">
                 Agent Dashboard
               </button>
@@ -65,4 +77,4 @@ const ComManageAgent = () => {
   );
 };
 
-export default ComManageAgent;
+export default AgentsList;
