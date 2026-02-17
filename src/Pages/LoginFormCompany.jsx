@@ -1,54 +1,25 @@
-import React, { useContext, useState } from 'react'
-import { LoginUserInfo } from '../Api/Loginfo'
-import Login_api from '../Api/LoginApi'
-import { useNavigate } from 'react-router-dom'
-import { UserContext } from '../Auth/Userprovider'
+import React, { useState } from 'react'
 
 const LoginFormCompany = () => {
-
-  const navigate = useNavigate()
-  const[naam , setnaam ] = useState('')
-  const[pass , setpass] = useState('')
-
-  const { setuser} = useContext(UserContext)
-   
-  const { setloginuser} = useContext(LoginUserInfo)
-  const submit = (g)=> {
+  const [nam, setnam] = useState('')
+  function submit(){
+    localStorage.setItem("name" , JSON.stringify(nam))
+  }
+      const user = localStorage.getItem("name")
+      const users = JSON.parse(user)
 
 
-    g.preventDefault()
-  const data = new URLSearchParams()
-  data.append("email" , naam);
-  data.append("pwd" , pass);
-
-    fetch(Login_api , {
-      method : "POST" , headers :{
-        "Content-Type" : "application/x-www-form-urlencoded" },
-      body: data.toString()
-    })
-    .then((f)=>f.json())
-    .then((t)=>{
-      console.log(t)
-      if(t.status === "succuss"){
-        navigate('/company')
-      }
-      setloginuser(t);
-      setuser({role : "company"})
-    })
-
-    
-    .catch((f)=>console.log(f))}
 
   return (
     <div>
-      
       <form action="" onSubmit={submit}>
-        <input type="text" placeholder='email' value={naam} onChange={(k)=>{setnaam(k.target.value)}} />
-        <input type="text" placeholder='pass' value={pass} onChange={(k)=>{setpass(k.target.value)}} />
-        <input type="submit" />
-
+        <input type="text" placeholder='name'  value={nam} onChange={(f)=>{setnam(f.target.value)}}  />
+        <input type="submit" placeholder='submit' />
       </form>
-      
+
+      <h1>{users}</h1>
+
+
     </div>
   )
 }

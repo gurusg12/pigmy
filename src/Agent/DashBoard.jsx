@@ -8,12 +8,12 @@ import {
   FcTodoList,
 } from "react-icons/fc";
 import { NavLink, Link } from "react-router-dom";
-import { LoginUserInfo } from "../Api/Loginfo";
 import Api from "../Api/LoginApi";
 import { Dashboards } from "../Auth/ComDashBoard";
 
 const Dashboard = () => {
-   const{loginuser} = useContext(LoginUserInfo)
+   const user= localStorage.getItem("logininfo")
+   const logininfo = JSON.parse(user)
    const{dash,setdash , setagents} = useContext(Dashboards)
 
 
@@ -22,7 +22,7 @@ const Dashboard = () => {
   useEffect(()=>{
   const data = new URLSearchParams()
   data.append("apikey" , "getDashboard")
-  data.append("token" ,loginuser.loginfo.token )
+  data.append("token" ,logininfo.loginfo.token )
     fetch(Api.Dash_Board, {
       method : "POST",headers:{"Content-Type" : "application/x-www-form-urlencoded"} ,body : data.toString()
     })
@@ -58,7 +58,7 @@ const Dashboard = () => {
         <div className="flex items-center gap-3 bg-white px-4 py-2 rounded-xl shadow-md">
           <FaUserAlt className="text-slate-600" />
           <span className="font-semibold text-slate-700">
-            {loginuser.loginfo.name}
+            {logininfo.loginfo.name}
           </span>
         </div>
       </div>
@@ -75,7 +75,7 @@ const Dashboard = () => {
 
           <h2 className="text-2xl font-bold text-slate-800">{dash.noofagents}</h2>
           <p className="text-slate-500 text-sm mb-3">
-            Active no of accounts
+           {dash.noofacs}
           </p>
 
           <NavLink
@@ -113,7 +113,7 @@ const Dashboard = () => {
             <span className="text-sm text-slate-400">Collection</span>
           </div>
 
-          <h2 className="text-2xl font-bold text-green-600">₹ 5</h2>
+          <h2 className="text-2xl font-bold text-green-600">₹ {dash.totrcptamt}</h2>
           <p className="text-slate-500 text-sm mb-3">
             Total Received Amount
           </p>

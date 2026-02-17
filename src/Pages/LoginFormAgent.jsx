@@ -6,14 +6,12 @@ import { LoginUserInfo } from "../Api/Loginfo";
 
 
 const LoginFormAgent = () => {
-  const { setuser } = useContext(UserContext);
   const { setloginuser } = useContext(LoginUserInfo)
 
   const navigate = useNavigate();
 
   const [name, setname] = useState("");
   const [pass, setpass] = useState("");
-  const [loding, setloading] = useState("")
 
 
 
@@ -34,24 +32,30 @@ const LoginFormAgent = () => {
       .then((f) => {
         console.log(f)
         if (f.loginfo.name !== null && f.loginfo.usrunqid !== null) {
+           localStorage.setItem("userrole" , JSON.stringify({role :"agent"}))
+           localStorage.setItem("logininfo" , JSON.stringify(f))
+
+
           console.log(f)
-          setloading("")
+
           setloginuser(f)
           navigate('/agent')
-          setuser({ role: "agent" })
           setname('')
           setpass('')
+
         } else {
           alert(`on this name ${name} agent not present`)
           console.log(f)
+
           setloginuser()
           navigate('/')
-          setuser({ role: "" })
           setname('')
           setpass('')
         }
       })
       .catch((f) => console.log(f))
+
+
 
   }
 
@@ -61,12 +65,7 @@ const LoginFormAgent = () => {
       {/* BIG LOGIN CIRCLE */}
       <div className="relative w-[420px] h-[420px] rounded-full bg-gradient-to-r from-[#1c2421] to-[#0c1412] shadow-[0_40px_80px_rgba(0,0,0,0.5)] flex flex-col items-center justify-center text-white">
 
-        {/* TITLE */}
-        <h2 className="text-lg tracking-[0.35em] mb-10 opacity-80">
-          {loding ? <div>{loding}</div> : <div>AGENT LOGIN</div>}
-        </h2>
-
-        {/* FORM */}
+        
         <form onSubmit={submit} className="w-[70%] space-y-6">
 
           {/* USERNAME */}

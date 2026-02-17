@@ -1,16 +1,15 @@
-import React, { useContext } from 'react'
 import { Navigate } from 'react-router-dom'
 import { UserContext } from './Userprovider'
 
 const Authuser = ({children , role}) => {
-    const {user} = useContext(UserContext)
+const userrole = localStorage.getItem("userrole")
+if(!userrole){
+   return <Navigate to='/' replace />
+}
+const roles = JSON.parse(userrole)
+   
 
-    if(!user){
-        return <Navigate to='/' replace />
-    }
-
-    if(role && !role.includes(user.role)){
-        alert ("for these page we dont have access for your role")
+    if (role && roles.role !== role) {
         return <Navigate to = "/" replace />
     }
   return children
