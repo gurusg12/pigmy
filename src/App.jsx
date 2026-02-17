@@ -17,6 +17,9 @@ import LoginFormAgent from './Pages/LoginFormAgent'
 import LoginFormCompany from './Pages/LoginFormCompany'
 import Summaryagent from './Agent/Summeryagents'
 import DeviceSummary from './Agent/DeviceSummary'
+import ComManageAgent from './Company/ComManageAgent'
+import AgentConfig from './Company/AgentConfig'
+import Accountlist from './Company/Accountlist'
 
 const App = () => {
   return (
@@ -40,9 +43,15 @@ const App = () => {
 
 
       </Route>
-      <Route path='/company' element={<Authuser role="company">{<Company/>}</Authuser>} >
-        <Route path ="dashboard" element = {<CompanyDash/>}  />
-        <Route path = 'acclist'  element = {<Acclist/>}/>
+      <Route path='/company' element={<Authuser role="company"><Company/></Authuser>} >
+        <Route index  element = {<CompanyDash/>}  />
+        <Route path = 'acclist'  element = {<ComManageAgent/>}/>
+        <Route path = 'acclist/:id'  element = {<AgentConfig/>}/>
+        <Route path = 'agentsacclist/:id'  element = {<Accountlist/>}/>
+
+       
+
+
         <Route path = 'profileupdate'  element = {<Profileupdate/>}/>
         <Route path='changepass' element={<Changepass/>} />
         <Route path='receipts' element={<Recept/>} />

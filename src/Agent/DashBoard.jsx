@@ -93,7 +93,7 @@ const Dashboard = () => {
             <span className="text-sm text-slate-400">Receipts</span>
           </div>
 
-          <h2 className="text-2xl font-bold text-slate-800">5</h2>
+          <h2 className="text-2xl font-bold text-slate-800">{dash.totrcpts}</h2>
           <p className="text-slate-500 text-sm mb-3">
             Number of receipts
           </p>
