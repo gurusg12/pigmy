@@ -73,27 +73,27 @@ const CompanyDash = () => {
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
         {/* Active Accounts */}
-        <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
+        
+         
+<div className="bg-emerald-500 p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
           <div className="flex justify-between items-center mb-4">
             <FcConferenceCall className="text-5xl" />
-            <span className="text-xl font-bold text-slate-500">Agents</span>
+            <span className="text-xl font-bold text-slate-50">Active Agents</span>
           </div>
 
-          <h2 className="text-2xl font-bold text-slate-800">{dash.noofagents}</h2>
-          <p className="text-slate-500 text-sm mb-3">
+          <h2 className="text-2xl font-bold text-slate-200">{dash.noofagents}</h2>
+          <p className="text-slate-100 text-sm mb-3">
             Number of Agents
            
           </p>
 
           <NavLink
-            to="/company/acclist"
+            to="/company/acc"
             className="text-indigo-600 font-medium flex items-center gap-1 hover:text-indigo-800"
           >
             More info <IoMdSend />
           </NavLink>
-        </div>   
-         
-
+        </div> 
         {/* Receipts */}
         <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
           <div className="flex justify-between items-center mb-4">
@@ -153,25 +153,7 @@ const CompanyDash = () => {
           </NavLink>
         </div>
 
-         <div className="bg-emerald-500 p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
-          <div className="flex justify-between items-center mb-4">
-            <FcConferenceCall className="text-5xl" />
-            <span className="text-xl font-bold text-slate-50">Active Agents</span>
-          </div>
-
-          <h2 className="text-2xl font-bold text-slate-200">{dash.noofagents}</h2>
-          <p className="text-slate-100 text-sm mb-3">
-            Number of Agents
-           
-          </p>
-
-          <NavLink
-            to="/company/acc"
-            className="text-indigo-600 font-medium flex items-center gap-1 hover:text-indigo-800"
-          >
-            More info <IoMdSend />
-          </NavLink>
-        </div> 
+         
 
         {/* Device Summary */}
       

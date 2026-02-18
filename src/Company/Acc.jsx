@@ -1,9 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState, useRef, useContext } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import Api from "../Api/LoginApi";
+import { Dashboards } from "../Auth/ComDashBoard";
 
 const Acc = () => {
+  const {setusername} = useContext(Dashboards)
   const [agent, setagent] = useState({});
   const navigate = useNavigate();
   const cardsRef = useRef([]);
@@ -37,10 +39,13 @@ const Acc = () => {
       gsap.fromTo(
         cardsRef.current,
         { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, stagger: 0.15, ease: "power3.out" }
+        { y: 0, opacity: 1, duration: 0.3, stagger: 0.15, ease: "power3.out" }
       );
     }
   }, [agent]);
+
+
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 p-4 md:p-10">
@@ -81,9 +86,12 @@ const Acc = () => {
                     Configuration
                   </button>
 
-                  <button
-                    onClick={() =>
-                      navigate(`/company/agentsacclist/${f.Userunqid}`)
+                  
+
+                <button
+                    onClick={() =>{
+                      setusername(f.Username)
+                      navigate(`/company/agentsacclist/${f.Userunqid}`)}
                     }
                     className="flex-1 bg-gradient-to-r from-green-400 to-emerald-500 text-white py-2 rounded-xl font-medium hover:scale-105 hover:shadow-lg transition-all duration-300"
                   >

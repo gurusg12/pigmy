@@ -1,10 +1,12 @@
-import React, {  useEffect, useState } from 'react'
+import React, {  useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Api from "../../Api/LoginApi"
+import { Dashboards } from '../../Auth/ComDashBoard';
 
 const Accountlist = () => {
 
-    const {id} = useParams();
+    const {id  } = useParams();
+    const {username} = useContext(Dashboards)
     const [accounts , setaccounts] = useState([])
     useEffect(()=>{
         const user = localStorage.getItem("logininfo")
@@ -37,10 +39,15 @@ const Accountlist = () => {
     console.log("gueus" ,accounts)
   return (
     <>
+    
+    <h1>{username}</h1>
    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-6 bg-gray-50">
 
 
+  
+
            {accounts.map((a, b) => (
+
     <div key={b} className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:shadow-md transition-shadow">
       <div className="flex justify-between items-start mb-4">
         <div>

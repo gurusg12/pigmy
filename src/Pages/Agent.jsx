@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import Nav from "../Components/Agent/Nav";
+import Nav from "../Components/Companys/Nav";
 import { gsap } from "gsap";
 
 const Agent = () => {

@@ -1,11 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaUser, FaLock } from "react-icons/fa";
-import { UserContext } from "../Auth/Userprovider";
 import { LoginUserInfo } from "../Api/Loginfo";
 import Api from "../Api/LoginApi";
 
 const LoginFormCompany = () => {
+  useEffect(() => { 
+  localStorage.removeItem("userrole")
+  localStorage.removeItem("logininfo")
+  }, [])
+  
   const { setloginuser } = useContext(LoginUserInfo);
   const navigate = useNavigate();
 

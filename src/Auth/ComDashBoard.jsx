@@ -6,11 +6,12 @@ const ComDashBoard = ({children}) => {
     const [agents , setagents] = useState([])
     const [acclist , setacclist] = useState([])
     const [token , settoken] = useState('')
+    const [username , setusername] = useState('')
 
 
   return (
 
-    <Dashboards.Provider value={{dash , setdash , agents , setagents , acclist , setacclist , token , settoken}} >
+    <Dashboards.Provider value={{dash , setdash , agents , setagents , acclist , setacclist , token , settoken , username , setusername}} >
         {children}
     </Dashboards.Provider>
   )
