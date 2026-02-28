@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import Errorpage from './Pages/Errorpage'
 
 const DashBoard = lazy(() => import('./Agent/DashBoard'))
 const Agent = lazy(() => import('./Pages/Agent'))
@@ -95,7 +96,11 @@ const App = () => {
           <Route path='acc' element={<Acc />} />
           <Route path='agentcollection/:id' element={<AgentColl />} />
         </Route>
+
+        <Route path='*' element = {<Errorpage/>} />
       </Routes>
+
+
     </Suspense>
   )
 }
